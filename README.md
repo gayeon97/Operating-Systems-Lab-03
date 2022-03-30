@@ -4,11 +4,14 @@ Lab 3: Resource Manager
 
 *Operating Systems, Spring 2020*
 
+### Overview ###
+
 For this lab, we are trying to replicate how a resource manger does resource allocation. An optimistic resource manager and the Banker's algorithm of Dijkstra are implemented in Java. 
 
 
 The optimistic resource manger is simple: a request by the task is satisfied if possible. If not, the task has to wait. When the resources held by a task is released (aka the task is terminated), the pending requests by remaining tasks are satisfied in a FIFO manner. 
 
+#### Program Layout ####
 
 The Banker program (Banker.java) reads input from a file, whose name is given as a command line argument when you run the program. 
 After reading all the input first, the program performs two simulations: one with the optimistic manager and one with the banker. Output is written to stdout (the screen).
@@ -67,10 +70,13 @@ line 9: terminate 2 0 0 0
 _Task.java file is created to organize all information and activities of a given input task so that it can be utilized by the Banker program to perform correct simulation for the resource allocation._ 
 
 
-The input files are located in the same 'src' folder as the Banker.java and Task.java files written for this lab. 
+** The input files are located in the same 'src' folder as the Banker.java and Task.java files written for this lab. ** 
+
+*** Please ignore the java classes with title including "unclean" or "part", as I have multiple versions of the project that has partially working parts. This was done along the development process to avoid confusion or contaminating the working code. The two java programs that matter are "Banker.java" and "Task.java"". ***
 
 
 - - - -
+#### Instructions to run the code ####
 To run on crackle1 on cims.nyu.edu server, please first go to crackle1, where the folder "Lab3" is uploaded. Then navigate to the Banker.java file like the following from crackle1:
      -Change directory to Lab3, then change directory to src.
      Or you can do the following:
