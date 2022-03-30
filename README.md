@@ -57,10 +57,15 @@ line 8: release 2 0 1 1
 line 9: terminate 2 0 0 0
 ```
 The line 1 indicates that this input has 2 tasks and 1 resource type, and 4 units of resource type #1.
+
 Line 2 indicates that the run begins ('initiate' at cycle 0-1, the cycle starting at 0 and ending at 1) with task 1 claiming (all) 4 units of resource 1. 
+
 Further down on line 6 we see that task 2 also claims 4 units of resource 1 during cycle 0-1.
+
 From lines 3 and 7, we learn that each task requests a unit during cycle 1-2 and returns that unit during the next cycle after the request is granted. 
+
 For the optimistic manager, the request is granted at 2 (the end of cycle 1-2) and the resource is returned during 2-3.
+
 Input 1 has all delays zero. For the optimistic manager each task terminates at time 3.
 
 
