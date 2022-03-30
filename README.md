@@ -16,9 +16,9 @@ After reading all the input first, the program performs two simulations: one wit
 Time is measured in fixed units called cycles (no fractional cycles are used for simplicity).
 The manager can process one activity (initiate, request, or release) for each task in one cycle. However, the terminate activity does not require a cycle.
 
-The input file begins with a line that contains two values 'T' (the number of tasks) and 'R' (the number of resource types), followed by R additional values (the number of units present of each resource type). Then come multiple input lines, each representing the next activity of a specific task. The possible activities are initiate, request, release, and terminate. 
+The input file begins with a line that contains two values 'T' (the number of tasks) and 'R' (the number of resource types), followed by R additional values (the number of units present of each resource type). Then come multiple input lines, each representing the next activity of a specific task. 
 
-All activities have the same format, namely a string followed by four unsigned integers.
+The possible activities are initiate, request, release, and terminate. All activities have the same format, namely a string followed by four unsigned integers.
 
 The initiate activity, which must precede all others for that task, is written 
 ```
