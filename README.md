@@ -1,6 +1,7 @@
 Lab 3: Resource Manager
 ===============
 **Gayeon Park**
+
 *Operating Systems, Spring 2020*
 
 For this program, we are trying to replicate how a resource manger does resource allocation. An optimistic resource manager and the Banker's algorithm of Dijkstra are implemented in Java. The optimistic resource manger is simple: a request by the task is satisfied if possible. If not, the task has to wait. When the resources held by the task is released, the pending requests by tasks are satisfied in a FIFO manner. 
