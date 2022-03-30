@@ -70,6 +70,7 @@ _Task.java file is created to organize all information and activities of a given
 The input files are located in the same 'src' folder as the Banker.java and Task.java files written for this lab. 
 
 
+- - - -
 To run on crackle1 on cims.nyu.edu server, please first go to crackle1, where the folder "Lab3" is uploaded. Then navigate to the Banker.java file like the following from crackle1:
      -Change directory to Lab3, then change directory to src.
      Or you can do the following:
@@ -82,6 +83,7 @@ When compiling, you have to make sure that you are compiling BOTH the Banker.jav
 
 ONE IMPORTANT THING TO NOTE: the input text files you are testing the Banker.java file against MUST be in the same folder as the Banker.java file
 So Banker.java file, Task.java file, and whatever input file you want to test HAVE to be in the same folder (namely, the src folder inside of the Lab3 folder).
+- - - -
 
 ### Compiling
 ```
@@ -94,6 +96,7 @@ To execute the code, type following:
 java Banker inputTextFileName
 
 ```
+- - - - 
 For example, if you want to execute the Banker.java file with the contents of input-03.txt file, do the following: 
 
 ### Compiling
