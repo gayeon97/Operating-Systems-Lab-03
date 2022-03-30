@@ -15,8 +15,10 @@ The optimistic resource manger is simple: a request by the task is satisfied if 
 ----
 ### Program Layout ###
 
-The Banker program (Banker.java) reads input from a file, whose name is given as a command line argument when you run the program. 
+The **Banker program (Banker.java)** reads input from a file, whose name is given as a command line argument when you run the program. 
 After reading all the input first, the program performs two simulations: one with the optimistic manager and one with the banker. Output is written to stdout (the screen).
+
+The **Task program (Task.java)** is created to organize all information and activities of a given input task so that it can be utilized by the Banker program to perform correct simulation for the resource allocation.
 
 Time is measured in fixed units called cycles (no fractional cycles are used for simplicity).
 The manager can process one activity (initiate, request, or release) for each task in one cycle. However, the terminate activity does not require a cycle.
@@ -67,9 +69,6 @@ line 9: terminate 2 0 0 0
 * From lines 3 and 7, we learn that each task requests a unit during cycle 1-2 and returns that unit during the next cycle after the request is granted. 
 * For the optimistic manager, the request is granted at 2 (the end of cycle 1-2) and the resource is returned during 2-3.
 * Input 1 has all delays zero. For the optimistic manager each task terminates at time 3.
-
-
-_Task.java file is created to organize all information and activities of a given input task so that it can be utilized by the Banker program to perform correct simulation for the resource allocation._ 
 
 
 **The input files are located in the same 'src' folder as the Banker.java and Task.java files written for this lab.** 
