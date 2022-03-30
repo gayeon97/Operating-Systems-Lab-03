@@ -13,7 +13,7 @@ For this lab, we are trying to replicate how a resource manger does resource all
 The optimistic resource manger is simple: a request by the task is satisfied if possible. If not, the task has to wait. When the resources held by a task is released (aka the task is terminated), the pending requests by remaining tasks are satisfied in a FIFO manner. 
 
 ----
-#### Program Layout ####
+### Program Layout ###
 
 The Banker program (Banker.java) reads input from a file, whose name is given as a command line argument when you run the program. 
 After reading all the input first, the program performs two simulations: one with the optimistic manager and one with the banker. Output is written to stdout (the screen).
