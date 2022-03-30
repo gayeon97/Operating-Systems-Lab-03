@@ -1,8 +1,11 @@
 Lab 3: Resource Manager
 ===============
+*Operating Systems, Spring 2020*
+
+
 **Gayeon Park**
 
-*Operating Systems, Spring 2020*
+***DISCLAIMER: I would like to make it clear that the following lab specifications are taken from the lab instructon distributed to our OS class by Professor Yan Shvartzshnaider. If you have any questions or want to see the original lab instructions, please refer to the [linked file.](https://github.com/gayeon97/Operating-Systems-Lab-03/blob/main/Banker_lab_original_instructions.pdf)***
 
 ----
 ### Overview ###
