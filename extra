@@ -1,0 +1,192 @@
+OLD: handling request for Banker
+//					//if the task's activity is "request"
+//					if (currActivity.containsKey("request")) {
+//						//get the arraylist of information about the current activity
+//						ArrayList<Integer> activityInfos = currActivity.get("request"); 
+//						//System.out.println("request" + Arrays.toString(activityInfos.toArray()));
+//
+//						HashMap<Integer,Integer> allClaims = currTask.getClaims();
+//
+//						int resourceIndex = activityInfos.get(2)-1; //represents the index of the resource requested by the task's activity
+//						int resourceRequested = activityInfos.get(3); //represents the number of the resource requested by the task's activity
+//						int resourceAvail = listOfUnitsOfEachResource.get(resourceIndex); //represents the available units of the resource requested
+//						//System.out.printf("Resource %d at index %d is requested: %d\n",resourceIndex+1,resourceIndex, resourceRequested);
+//						//System.out.printf("There are %d units available of Resource %d\n",resourceAvail,resourceIndex+1);
+//
+//						int resourceClaimed = allClaims.get(resourceIndex); //represents the amount claimed of the current resource type by the current task
+//						//System.out.println("resourceClaimed: " + resourceClaimed);
+//
+//						int requestDelay = currTask.getRequestdelay(); //represents the delay counter kept by the current task
+//						int activityDelay = activityInfos.get(1); //represents the delay given by the current task's activity
+//						//System.out.printf("Task %d's Resource %d delay %d vs. requestDelay is: %d\n",currTask.getTaskNum(),resourceIndex+1,activityDelay, requestDelay);
+//
+//						isSafeState = true;
+//						for (Map.Entry m:currTask.getClaims().entrySet()) { 
+//							int claimResourceIndex = ((Integer) m.getKey()).intValue();
+//							//System.out.println("claimResourceIndex: " + claimResourceIndex);
+//							int numClaims = ((Integer) m.getValue()).intValue();
+//							//System.out.println("numClaims: " + numClaims);
+//
+//							//System.out.printf("Resource %d's claim: %d\n",(int)m.getKey() + 1,m.getValue()); 
+//
+//							//if the current task's number of claim for the current resource type EXCEEDS the number if resources available
+//							if (numClaims > listOfUnitsOfEachResource.get(claimResourceIndex)) {
+//								isSafeState = false;
+//							}
+//							//System.out.printf("Task %d's Resource #%d held units: %d\n",currTask.getTaskNum(),(int)m.getKey() + 1,m.getValue());
+//						} 
+//						//System.out.println("is safe state to run: " + isSafeState);
+//
+//						//IF DON'T HAVE TO WAIT FOR DELAY
+//						if (requestDelay == activityDelay) {			
+//
+//							//check if there are enough resources for the CLAIM to be satisfied
+//							if (resourceClaimed <= resourceAvail) {
+//								//System.out.printf("FIRST: Task %d's claim: %d VS. available resources: %d.\n",currTask.getTaskNum(),resourceClaimed,resourceAvail);
+//								//System.out.printf("Task %d has enough resources for the claim to be satisfied!\n",currTask.getTaskNum());
+//
+//								//check if the current task's resources requested DOES NOT EXCEED its claim
+//								//if (isSafeState) {
+//								if (resourceRequested <= resourceClaimed) {
+//									//System.out.printf("Task %d's resource requested DOES NOT EXCEED its claim!\n",currTask.getTaskNum());
+//									//System.out.printf("Task %d's requested resources: %d VS. claim: %d .\n",currTask.getTaskNum(),resourceRequested,resourceClaimed);
+//
+//									//System.out.printf("GRANTED: Task %d's request for Resource %d!\n",currTask.getTaskNum(),resourceIndex+1);
+//
+//									//reset the requestDelay to 0
+//									currTask.resetRequestdelay();
+//
+//									//calculate the claim remaining for the current requested resource type
+//									resourceClaimed -= resourceRequested;
+//									//update the list that stores the claims of each resource type
+//									allClaims.put(resourceIndex, resourceClaimed);
+//									//System.out.printf("There are %d claim LEFT of Resource %d\n",allClaims.get(resourceIndex),resourceIndex+1);						
+//									//set the updated list of current task that stores the claims of each resource type 
+//									currTask.setClaims(allClaims);
+//									for (Map.Entry m:currTask.getClaims().entrySet()) { 
+//										//System.out.printf("Resource %d's remaining claim: %d\n",(int)m.getKey() + 1,m.getValue()); 
+//										//System.out.printf("Task %d's Resource #%d held units: %d\n",currTask.getTaskNum(),(int)m.getKey() + 1,m.getValue());
+//									} 
+//
+//									for (Map.Entry m:currTask.getResourcesHeld().entrySet()) { 
+//										//System.out.printf("Resource %d's remaining claim: %d\n",(int)m.getKey() + 1,m.getValue()); 
+//										//System.out.printf("Task %d's Resource #%d held units: %d\n",currTask.getTaskNum(),(int)m.getKey() + 1,m.getValue());
+//										//System.out.printf("before: Task %d currently holds %d of resource %d\n",currTask.getTaskNum(),m.getValue(),(int)m.getKey()+1);
+//									} 
+//
+//									//set the units requested for the resource as the value for the resourceHeld of requested resource type
+//									//this represents that current task is holding additional many units of the resource it has requested
+//									currTask.getResourcesHeld().put(resourceIndex,currTask.getResourcesHeld().get(resourceIndex)+resourceRequested);
+//									//System.out.printf("now: Task %d currently holds %d of resource %d\n",currTask.getTaskNum(),currTask.getResourcesHeld().get(resourceIndex),resourceIndex+1);
+//
+//									//calculate the remaining resources available for the Opt. resource manager
+//									int newResourceAvail = resourceAvail - resourceRequested;
+//									//System.out.printf("There are %d units LEFT of Resource %d\n",newResourceAvail,resourceIndex+1);
+//
+//									//update the list that stores the available units of each resource type
+//									listOfUnitsOfEachResource.set(resourceIndex, newResourceAvail);
+//
+//									//the request has been granted, so remove the activity from the activities list
+//									currTask.getActivities().remove(0);
+//
+//									//pop the current Task and add it to the executedTasks list
+//									executedTasks.add(tasksBanker.remove(i));
+//									i--; //do this so the order of reading from the list of tasks isn't disturbed
+//									//System.out.println("THE TASK HAS BEEN POPPED\n");
+//
+//								} else { //the current task's resources requested DOES EXCEED its claim --> ERROR!
+//									//System.out.printf("ERROR: Task %d's RESOURCE REQUESTED does EXCEED its claim!\n\n",currTask.getTaskNum());
+//
+//									String errorInfo = "";
+//
+//									//so ABORT
+//									currTask.setAbort(true);
+//
+//									//release all the resources of the task to be aborted
+//									HashMap<Integer,Integer> itsHeldRsrcs = currTask.getResourcesHeld();
+//									for (int n = 0; n < itsHeldRsrcs.size(); n ++) {
+//										int resourceHeld = itsHeldRsrcs.get(n); //get the units held of the current resource type
+//										int resourceReturned = listOfReturnedUnitsOfEachResource.get(n); //get the currently all returned units of the current resource type
+//										//System.out.println("this is the resource held: " + resourceHeld);
+//										//System.out.println(resourceReturned);
+//
+//										//add the resource release by the current task to the total units returned for the current resource
+//										resourceReturned += resourceHeld;
+//										listOfReturnedUnitsOfEachResource.set(n, resourceReturned);
+//										//System.out.printf("The returnedResource %d now has %d units\n",n, resourceReturned);
+//
+//										errorInfo += String.format(" %d unit of resource %d", resourceReturned, n+1);
+//									}
+//
+//									//store the current task to the right index in the finalized list holding tasks for Opt. resource manager
+//									tasksFinalizedBkr.set(currTask.getIndex(), currTask);
+//									//remove the CURRENT TASK from the list of tasks since it is COMPLETED
+//									tasksBanker.remove(currTask);
+//
+//									error += String.format("During cycle %d-%d of Banker's algorithms\n",cycle-1,cycle);
+//									error += String.format("\tTask %d's request exceeds its claim; aborted;",currTask.getTaskNum());
+//									error += errorInfo;
+//									error += " available next cycle\n";
+//								}
+//							} else { //the claim is bigger than the resources available
+//								//so the request CANNOT be satisfied, so WAIT
+//
+//								//System.out.printf("SECOND: Task %d's claim: %d VS. available resources: %d.\n",currTask.getTaskNum(),resourceClaimed,resourceAvail);
+//								//System.out.printf("Task %d does NOT HAVE enough resources for the claim to be satisfied!\n",currTask.getTaskNum());
+//								//System.out.printf("WAITING: Task %d's request for Resource %d!\n",currTask.getTaskNum(),resourceIndex+1);
+//								currTask.increaseWaitTime();
+//								//System.out.printf("Task %d waits %d\n\n",currTask.getTaskNum(),currTask.getWaitTime());
+//							}
+//
+//						} else { //the delay counter is NOT equal to the delay given by the current task's activity, 
+//							//so there is a DELAY and the current task needs to wait for the delay to finish
+//
+//							//System.out.printf("Task %d delays for request for Resource %d!\n",currTask.getTaskNum(),resourceIndex+1);
+//							//increase the delay counter
+//							currTask.increaseRequestdelay();
+//							//System.out.printf("COMPUTING: Task %d's (%d of %d cycles)\n",currTask.getTaskNum(),currTask.getRequestdelay(),activityDelay);
+//
+//							//pop the current Task and add it to the executedTasks list
+//							executedTasks.add(tasksBanker.remove(i));
+//							i--; //do this so the order of reading from the list of tasks isn't disturbed
+//							//System.out.println("THE TASK HAS BEEN POPPED\n");
+//						}
+//					} //end of "request" handling
+
+
+
+/* FOR PRINTING OUT ALL THE ACTIVITIES FOR EACH TASKS for Optimistic Resource manager & Banker's Algorithm
+		//print out different activities list for each tasks of tasksOptimistic
+		for (int i = 0; i < tasksOptimistic.size(); i ++) {
+
+			Task task = tasksOptimistic.get(i);
+			System.out.printf("Optimistic Manager's Task %d: \n", task.getTaskNum());
+
+			ArrayList<HashMap<String, ArrayList<Integer>>> allActivities = task.getActivities();	
+			//System.out.println(allActivities.size());
+			for (int j = 0; j < allActivities.size(); j ++) {
+				HashMap<String, ArrayList<Integer>> taskActivities = allActivities.get(j);
+				for (Map.Entry m:taskActivities.entrySet()) { 
+					System.out.println(m.getKey()+": "+m.getValue().toString()); 
+				} 
+			}
+			System.out.println();
+		} //end of the for loop for printing out activities list for debugging purposes
+
+		//print out different activities list for each tasks of tasksBanker
+		for (int i = 0; i < tasksBanker.size(); i ++) {
+
+			Task task = tasksBanker.get(i);
+			System.out.printf("Banker Manager's Task %d: \n", task.getTaskNum());
+
+			ArrayList<HashMap<String, ArrayList<Integer>>> allActivities = task.getActivities();	
+			//System.out.println(allActivities.size());
+			for (int j = 0; j < allActivities.size(); j ++) {
+				HashMap<String, ArrayList<Integer>> taskActivities = allActivities.get(j);
+				for (Map.Entry m:taskActivities.entrySet()) { 
+					System.out.println(m.getKey()+": "+m.getValue().toString()); 
+				} 
+			}
+			System.out.println();
+		}
+		 */
