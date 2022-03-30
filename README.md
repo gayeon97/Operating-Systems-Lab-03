@@ -71,7 +71,7 @@ line 9: terminate 2 0 0 0
 * Input 1 has all delays zero. For the optimistic manager each task terminates at time 3.
 
 
-**The input files are located in the same 'src' folder as the Banker.java and Task.java files are at.** 
+**The input files are located in the same 'src' folder as the Banker.java and Task.java files are at. You can also go to the folder "Lab3_outputs" to see the 13 input files and their expected output files.  Few of the output files include the cycle-by-cycle results to help debugging.** 
 
 ***Please ignore the java classes with title including "unclean" or "part", as I have multiple versions of the project that has partially working parts. This was done along the development process to avoid confusion or contaminating the working code. The two java programs that matter are "Banker.java" and "Task.java"".***
 
