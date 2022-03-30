@@ -70,9 +70,9 @@ line 9: terminate 2 0 0 0
 _Task.java file is created to organize all information and activities of a given input task so that it can be utilized by the Banker program to perform correct simulation for the resource allocation._ 
 
 
-** The input files are located in the same 'src' folder as the Banker.java and Task.java files written for this lab. ** 
+**The input files are located in the same 'src' folder as the Banker.java and Task.java files written for this lab.** 
 
-*** Please ignore the java classes with title including "unclean" or "part", as I have multiple versions of the project that has partially working parts. This was done along the development process to avoid confusion or contaminating the working code. The two java programs that matter are "Banker.java" and "Task.java"". ***
+***Please ignore the java classes with title including "unclean" or "part", as I have multiple versions of the project that has partially working parts. This was done along the development process to avoid confusion or contaminating the working code. The two java programs that matter are "Banker.java" and "Task.java"".***
 
 
 - - - -
